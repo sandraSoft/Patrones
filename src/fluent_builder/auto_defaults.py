@@ -1,6 +1,7 @@
 class Auto:
     """
-    Auto con muchas características opcionales
+    Auto con muchas características opcionales, lo cual se define
+    desde los parámetros del constructor (que tiene un valor por defecto).
     """
 
     def __init__(self, placa, marca, tipo=None, tipo_bateria=None, asientos=0,\

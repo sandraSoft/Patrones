@@ -1,16 +1,8 @@
 class Auto:
     """
-    Auto con muchas características opcionales
+    Auto con muchas características opcionales, pero el constructor
+    pide todos los valores.
     """
-    placa = None
-    marca = None
-    tipo = None
-    tipo_bateria = None
-    asientos = 0
-    potencia_motor = 0
-    largo = 0
-    ancho = 0
-    extras = None
 
     def __init__(self, placa, marca, tipo, tipo_bateria, asientos,\
         potencia_motor, largo, ancho, extras):

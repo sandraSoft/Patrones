@@ -2,7 +2,8 @@ from fluent_builder.auto import Auto
 
 class Agencia:
     """
-    Agencia que vende autos
+    Agencia que vende autos con diferentes características,
+    pero tiene que enviar todos los valores para crear cada auto.
     """
 
     def __init__(self):

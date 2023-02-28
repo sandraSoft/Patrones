@@ -7,8 +7,7 @@ class TestAuto(unittest.TestCase):
     """
 
     def test_auto_completo(self):
-        auto = Auto("QWE-123","Renault Sandero","SUV","Litio",
-				5,250,3000,1200,["GPS", "Bloqueo central"])
+        auto = Auto("QWE-123","Renault Sandero","SUV","Litio",5,250,3000,1200,["GPS", "Bloqueo central"])
         
         self.assertEqual("QWE-123", auto.placa)
         self.assertEqual("Renault Sandero", auto.marca)
@@ -21,13 +20,13 @@ class TestAuto(unittest.TestCase):
         self.assertEqual(["GPS", "Bloqueo central"], auto.extras)
     
     def test_auto_pocos_valores(self):
-        auto = Auto("THW-489","KIA Sport", None, None, 0, 0, 0, 0, None)
+        auto = Auto("THW-489","KIA Sport", None, None, 5, 0, 0, 0, None)
 
         self.assertEqual("THW-489", auto.placa)
         self.assertEqual("KIA Sport", auto.marca)
         self.assertIsNone(auto.tipo)
         self.assertIsNone(auto.tipo_bateria)
-        self.assertEqual(0, auto.asientos)
+        self.assertEqual(5, auto.asientos)
         self.assertEqual(0, auto.potencia_motor)
         self.assertEqual(0, auto.largo)
         self.assertEqual(0, auto.ancho)

@@ -15,7 +15,7 @@ class Auto:
 
 class AutoBuilder:
     """
-    Un constructor de un auto, que da más flexibilidad que solo el constructor
+    Un "FLUENT BUILDER" de un auto, que da más flexibilidad que solo el constructor
     """    
     def __init__(self, placa, marca):
         self.auto = Auto()

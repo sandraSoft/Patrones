@@ -1,6 +1,6 @@
 import unittest
 from decorator.catalogo import Catalogo
-from decorator.entidades_inicial import Celular
+from decorator.entidades import CelularBase
 
 class TestCelular(unittest.TestCase):
     """
@@ -13,7 +13,7 @@ class TestCelular(unittest.TestCase):
 
     def test_catalogo_celulares_base(self):
         catalogo = Catalogo()
-        catalogo.adicionar_celular(Celular("LG",256))
-        catalogo.adicionar_celular(Celular("Moto",256))
+        catalogo.adicionar_celular(CelularBase("LG",256))
+        catalogo.adicionar_celular(CelularBase("Moto",256))
         precio_esperado = 1614400
         self.assertEqual(precio_esperado, catalogo.get_precio_total_catalogo())

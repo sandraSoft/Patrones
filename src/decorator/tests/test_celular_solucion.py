@@ -1,5 +1,8 @@
 import unittest
-from decorator.entidades_inicial import Celular
+from decorator.entidades import Celular
+from decorator.entidades import CelularBase
+from decorator.entidades import Usado
+from decorator.entidades import ConCamara
 
 class TestCelular(unittest.TestCase):
     """
@@ -7,26 +10,21 @@ class TestCelular(unittest.TestCase):
     """
 
     def test_celular_base(self):
-        celular = Celular("moto",256)
+        celular = CelularBase("moto",256)
         precio_esperado = 807200
         self.assertEqual(precio_esperado, celular.calcular_precio())
-
-    """
-    Estas pruebas todavía no se pueden hacer:
     
     def test_celular_usado(self):
-        celular_usado = CelularUsado(Celular("moto",256))
+        celular_usado = Usado(CelularBase("moto",256))
         precio_esperado = 403600
         self.assertEqual(precio_esperado, celular_usado.calcular_precio())
 
     def test_celular_con_camara(self):
-        celular_con_camara = CelularCamara(Celular("moto",256))
+        celular_con_camara = ConCamara(CelularBase("moto",256))
         precio_esperado = 968640
         self.assertEqual(precio_esperado, celular_con_camara.calcular_precio())
 
     def test_celular_usado_con_camara(self):
-        celular_con_camara = CelularCamara(CelularUsado(Celular("moto",256)))
+        celular_con_camara = ConCamara(Usado(CelularBase("moto",256)))
         precio_esperado = 484320
         self.assertEqual(precio_esperado, celular_con_camara.calcular_precio())
-
-    """

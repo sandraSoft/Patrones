@@ -1,6 +1,6 @@
 """ 
 Jerarquía de clases usada en un juguetería
-Version: 1.0
+Version: 1.1
 """
 
 from abc import ABC, abstractmethod
@@ -15,11 +15,10 @@ class Juguete(ABC):
         self.volumen = volumen
     
     @abstractmethod
-    def get_precio_total(self):
+    def get_precio_total(self) -> float:
         """
         Calcula el precio total del juguete, incluyendo el precio del empaque
         """
-        pass
 
 
 class Peluche(Juguete):

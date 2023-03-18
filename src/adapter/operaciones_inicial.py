@@ -1,5 +1,3 @@
-from adapter.entidades_inicial import Cuenta
-
 class OperacionBancaria:
     """
     Clase que realiza operaciones o transacciones con productos bancarios

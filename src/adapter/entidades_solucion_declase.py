@@ -1,11 +1,27 @@
+
+from abc import ABC, abstractmethod
 """
-Productos financieros de una entidad, que se manejan diferente
-pero se desean unificar para algunas operaciones, como retirar
+Productos financieros de una entidad, que se manejan de manera
+uniforme al retirar, gracias al patrón Adapter.
 """
 
-class Cuenta:
+class ProductoBancario(ABC):
+    """
+    Producto que permite hacer operaciones con cantidades de dinero.
+    CORRESPONDE AL ROL "Target" (o "Client Interface") DEL PATRÓN ADAPTER.
+    """
+
+    @abstractmethod
+    def retirar(self, cantidad:float) -> bool:
+        """ 
+        Retira dinero de un producto bancario, hasta el límite permitido.
+        """
+
+
+class Cuenta(ProductoBancario):
     """
     Cuenta bancaria de la cual se pueden hacer retiros de dinero.
+    Hereda de ProductoBancario para que sea uniforme la forma de retirar.
     """
     def __init__(self, numero, saldo):
         self.numero = numero
@@ -15,7 +31,7 @@ class Cuenta:
         """
         Sacar dinero de la cuenta, disminuyendo el saldo, siempre y cuando
         la cantidad que se desea retirar sea menor o igual al saldo,
-        porque estas cuentas no permiten sobregiros (saldos negativos)
+        porque estas cuentas no permiten sobregiros (saldos negativos).
         """
         if (cantidad <= 0) or (cantidad > self.saldo):
             return False
@@ -23,9 +39,11 @@ class Cuenta:
             self.saldo -= cantidad
             return True
 
+
 class TarjetaCredito:
     """
     Tarjeta que permite compras a crédito y realiza avances (parecido a retirar dinero).
+    CORRESPONDE AL ROL "Adaptee" (o "Service") DEL PATRÓN ADAPTER.
     """
     def __init__(self, numero, valor):
         self.numero = numero
@@ -41,3 +59,18 @@ class TarjetaCredito:
             raise ValueError("Cantidad negativa o mayor al saldo")
         
         self.valor -= cantidad
+
+
+class TarjetaCuenta(ProductoBancario, TarjetaCredito):
+    """
+    Permite usar las tarjetas de crédito como productos bancarios,
+    especialmente para usar la función "retirar".
+    CORRESPONDE AL ROL "Adapter" DEL PATRÓN ADAPTER - DE CLASE.
+    """
+    
+    def retirar(self, cantidad):
+        try:
+            self.realizar_avance(cantidad)  
+            return True
+        except ValueError:
+            return False

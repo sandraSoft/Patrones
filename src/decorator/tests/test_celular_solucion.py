@@ -1,8 +1,8 @@
 import unittest
-from decorator.entidades import Celular
-from decorator.entidades import CelularBase
-from decorator.entidades import Usado
-from decorator.entidades import ConCamara
+from decorator.entidades_solucion import Celular
+from decorator.entidades_solucion import CelularBase
+from decorator.entidades_solucion import Usado
+from decorator.entidades_solucion import ConCamara
 
 class TestCelular(unittest.TestCase):
     """

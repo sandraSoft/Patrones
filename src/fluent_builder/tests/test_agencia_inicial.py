@@ -1,5 +1,5 @@
 import unittest
-from fluent_builder.agencia import Agencia
+from fluent_builder.agencia_inicial import Agencia
 
 class TestAgencia(unittest.TestCase):
     """

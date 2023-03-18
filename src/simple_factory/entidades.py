@@ -7,7 +7,8 @@ from abc import ABC, abstractmethod
 
 class Juguete(ABC):
     """
-    Juguete para bebé, con hijas para los diferentes juguetes que se deseen
+    Juguete para bebé, con hijas para los diferentes juguetes que se deseen.
+    CORRESPONDE AL ROL "PRODUCT" del Simple Factory.
     """
     
     def __init__(self, precio_base, volumen):
@@ -23,7 +24,8 @@ class Juguete(ABC):
 
 class Peluche(Juguete):
     """
-    Juguete de peluche para bebé
+    Juguete de peluche para bebé.
+    CORRESPONDE AL ROL "CONCRETE PRODUCT" del Simple Factory.
     """
 
     def get_precio_total(self):
@@ -32,7 +34,8 @@ class Peluche(Juguete):
 
 class Balon(Juguete):
     """
-    Balón de colores para bebé
+    Balón de colores para bebé.
+    CORRESPONDE AL ROL "CONCRETE PRODUCT" del Simple Factory.
     """
 
     def get_precio_total(self):

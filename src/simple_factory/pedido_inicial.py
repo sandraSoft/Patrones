@@ -4,11 +4,9 @@ from simple_factory.entidades import Balon
 class Pedido:
     """ 
     Permite obtener los datos de un pedido de un juguete, especialmente el precio
- 
+
     ESTA CLASE DEBE CONOCER LAS CLASES HIJAS DE JUGUETE,
     CREANDO ALTO ACOMPLAMIENTO
- 
-    @version 1.0
     """
 
     def adicionar_juguete(self, precio_base, volumen, tipo):

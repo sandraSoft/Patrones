@@ -4,7 +4,7 @@ from fluent_builder.auto_con_builder import AutoBuilder
 class Agencia:
     """
     Agencia que vende autos con diferentes características.
-    Usa el Fluent Builder para solo crear cada auto con las que necesita.
+    Usa el Fluent Builder para crear cada auto con las que necesita.
     """
 
     def __init__(self):

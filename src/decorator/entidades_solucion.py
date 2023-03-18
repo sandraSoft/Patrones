@@ -11,7 +11,6 @@ class Celular(ABC):
         """
         El precio depende de varios factores. Las caractetísticas extra pueden cambiarlo.
         """
-        pass
 
 
 class CelularBase(Celular):

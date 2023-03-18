@@ -1,6 +1,6 @@
 import unittest
 from decorator.catalogo import Catalogo
-from decorator.entidades import CelularBase
+from decorator.entidades_solucion import CelularBase
 
 class TestCelular(unittest.TestCase):
     """

@@ -2,6 +2,9 @@ from simple_factory.entidades import Peluche
 from simple_factory.entidades import Balon
 
 class FabricaJuguetes:
+    """
+    CORRESPONDE AL ROL "FACTORY" del Simple Factory.
+    """
     @staticmethod
     def crear_juguete(precio_base, volumen, tipo):
         if tipo == 'p':
@@ -16,11 +19,8 @@ class Pedido:
     """ 
     Permite obtener los datos de un pedido de un juguete, especialmente el precio.
  
-    ESTA CLASE USA UNA FÁBRICA,
-    ASÍ NO TIENE QUE CONOCER LAS CLASES HIJAS DE JUGUETE,
-    CUMPLIENDO CON "DEPENDENCY INVERSION"
- 
-    @version 2.0
+    ESTA CLASE USA UNA FÁBRICA, ASÍ NO TIENE QUE CONOCER LAS HIJAS DE JUGUETE,
+    CUMPLIENDO CON "DEPENDENCY INVERSION".
     """
 
     def adicionar_juguete(self, precio_base, volumen, tipo):

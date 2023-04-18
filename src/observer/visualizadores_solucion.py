@@ -17,7 +17,7 @@ class ObservadorSensor(ABC):
         (como la velocidad).
         """
 
-class Mensaje:
+class Mensaje(ObservadorSensor):
     """ 
     Muestra un mensaje cuando la velocidad de la bicicleta supera un límite.
 
@@ -34,7 +34,7 @@ class Mensaje:
         self.mostrar(velocidad)
 
 
-class VentanaColor(tk.Tk):
+class VentanaColor(tk.Tk,ObservadorSensor):
     """
     Ventana sencilla para mostrar un color, dependiendo de la velocidad de la bicicleta.
 

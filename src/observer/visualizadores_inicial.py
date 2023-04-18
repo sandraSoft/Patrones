@@ -1,5 +1,5 @@
 import tkinter as tk
-from entidades import SensorVelocidad
+from entidades_inicial import SensorVelocidad
 
 class Mensaje:
     """ 

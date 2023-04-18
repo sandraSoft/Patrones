@@ -1,7 +1,7 @@
 import tkinter as tk
 import sys
-from entidades import SensorVelocidad
-from visualizadores import Mensaje, VentanaColor
+from entidades_inicial import SensorVelocidad
+from visualizadores_inicial import Mensaje, VentanaColor
 
 class VentanaSimulaSensor(tk.Tk):
     """
@@ -30,6 +30,11 @@ class VentanaSimulaSensor(tk.Tk):
 
 
 class ProgramaSimulador:
+    """
+    Simulación de prueba para verificar la velocidad de una bicicleta.
+    Se usa el patrón Observer.
+    """
+
     def __init__(self):
         self.sensor = SensorVelocidad()
         self.ventana_color = VentanaColor()

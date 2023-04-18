@@ -16,13 +16,13 @@ class Sensor:
     def eliminar_observador(self, observador):
         self.observadores.remove(observador)
     
-    def notificar(self, sensor):
+    def notificar(self):
         """
         Recorre la lista de observadores para informarles que hay un cambio en el valor, 
         para que ellos tomen la acción que corresponda.
         """
         for observador in self.observadores:
-            observador.actualizar(sensor)
+            observador.actualizar(self)
 
 
 class SensorVelocidad(Sensor):
@@ -48,4 +48,4 @@ class SensorVelocidad(Sensor):
         para que los interesados se actualicen (parte del patrón Observer).
         """
         self.velocidad = velocidad
-        self.notificar(self)
+        self.notificar()

@@ -6,9 +6,7 @@ from adapter.entidades_solucion_declase import TarjetaCuenta
 class TestOperacionBancaria(unittest.TestCase):
     """
     Se prueba la funcionalidad de realizarRetiro, para productos bancarios.
-
-    POR AHORA SOLO FUNCIONA PARA CUENTAS.
-    TODAVÍA NO SE PUEDEN HACER "RETIROS" DE TARJETAS DE CRÉDITO.
+    (Cuentas y Tarjetas de Crédito)
     """
 
     def test_retirar_cuenta_normal(self):

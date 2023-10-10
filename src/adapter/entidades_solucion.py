@@ -8,7 +8,7 @@ uniforme al retirar, gracias al patrón Adapter.
 class ProductoBancario(ABC):
     """
     Producto que permite hacer operaciones con cantidades de dinero.
-    CORRESPONDE AL ROL "Target" (o "Client Interface") DEL PATRÓN ADAPTER.
+    CORRESPONDE AL ROL "Target" DEL PATRÓN ADAPTER.
     """
 
     @abstractmethod
@@ -40,23 +40,6 @@ class Cuenta(ProductoBancario):
             return True
 
 
-class TarjetaCuenta(ProductoBancario):
-    """
-    Permite usar las tarjetas de crédito como productos bancarios,
-    especialmente para usar la función "retirar".
-    CORRESPONDE AL ROL "Adapter" DEL PATRÓN ADAPTER.
-    """
-    def __init__(self, tarjeta):
-        self.tarjeta = tarjeta
-    
-    def retirar(self, cantidad):
-        try:
-            self.tarjeta.realizar_avance(cantidad)  
-            return True
-        except ValueError:
-            return False
-
-
 class TarjetaCredito:
     """
     Tarjeta que permite compras a crédito y realiza avances (parecido a retirar dinero).
@@ -76,3 +59,20 @@ class TarjetaCredito:
             raise ValueError("Cantidad negativa o mayor al saldo")
         
         self.valor -= cantidad
+
+
+class TarjetaCuenta(ProductoBancario):
+    """
+    Permite usar las tarjetas de crédito como productos bancarios,
+    especialmente para usar la función "retirar".
+    CORRESPONDE AL ROL "Adapter" DEL PATRÓN ADAPTER.
+    """
+    def __init__(self, tarjeta):
+        self.tarjeta = tarjeta
+    
+    def retirar(self, cantidad):
+        try:
+            self.tarjeta.realizar_avance(cantidad)  
+            return True
+        except ValueError:
+            return False

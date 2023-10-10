@@ -1,27 +1,13 @@
 
-from abc import ABC, abstractmethod
 """
 Productos financieros de una entidad, que se manejan de manera
 uniforme al retirar, gracias al patrón Adapter.
 """
 
-class ProductoBancario(ABC):
-    """
-    Producto que permite hacer operaciones con cantidades de dinero.
-    CORRESPONDE AL ROL "Target" DEL PATRÓN ADAPTER.
-    """
-
-    @abstractmethod
-    def retirar(self, cantidad:float) -> bool:
-        """ 
-        Retira dinero de un producto bancario, hasta el límite permitido.
-        """
-
-
-class Cuenta(ProductoBancario):
+class Cuenta():
     """
     Cuenta bancaria de la cual se pueden hacer retiros de dinero.
-    Hereda de ProductoBancario para que sea uniforme la forma de retirar.
+    CORRESPONDE AL ROL "Target" DEL PATRÓN ADAPTER.
     """
     def __init__(self, numero, saldo):
         self.numero = numero
@@ -61,16 +47,22 @@ class TarjetaCredito:
         self.valor -= cantidad
 
 
-class TarjetaCuenta(ProductoBancario, TarjetaCredito):
+class TarjetaCuenta(Cuenta):
     """
-    Permite usar las tarjetas de crédito como productos bancarios,
+    Permite usar las tarjetas de crédito como cuentas,
     especialmente para usar la función "retirar".
-    CORRESPONDE AL ROL "Adapter" DEL PATRÓN ADAPTER - DE CLASE.
+    CORRESPONDE AL ROL "Adapter" DEL PATRÓN ADAPTER.
+
+    Al heredar de Cuenta tiene toda la estructura de esa clase,
+    incluso atributos y métodos que no requiere para hacer la adaptación.
     """
+    def __init__(self, tarjeta):
+        Cuenta.__init__(self, tarjeta.numero, tarjeta.valor)
+        self.tarjeta = tarjeta
     
     def retirar(self, cantidad):
         try:
-            self.realizar_avance(cantidad)  
+            self.tarjeta.realizar_avance(cantidad)  
             return True
         except ValueError:
             return False

@@ -8,8 +8,7 @@ class TestOperacionBancaria(unittest.TestCase):
     """
     Se prueba la funcionalidad de realizarRetiro, para productos bancarios.
 
-    POR AHORA SOLO FUNCIONA PARA CUENTAS.
-    TODAVÍA NO SE PUEDEN HACER "RETIROS" DE TARJETAS DE CRÉDITO.
+    PARA HACER PRUEBAS DE TARJETAS DE CRÉDITO DEBE USAR EL ADAPTER.
     """
 
     def test_retirar_cuenta_normal(self):

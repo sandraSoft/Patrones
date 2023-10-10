@@ -1,7 +1,8 @@
 import unittest
 from adapter.operaciones_solucion import OperacionBancaria
-from adapter.entidades_solucion_declase import Cuenta
-from adapter.entidades_solucion_declase import TarjetaCuenta
+from adapter.entidades_solucion_simplificada import Cuenta
+from adapter.entidades_solucion_simplificada import TarjetaCuenta
+from adapter.entidades_solucion_simplificada import TarjetaCredito
 
 class TestOperacionBancaria(unittest.TestCase):
     """
@@ -33,21 +34,21 @@ class TestOperacionBancaria(unittest.TestCase):
     
     def test_retirar_tarjeta_normal(self):
         control_banco = OperacionBancaria()
-        tarjeta = TarjetaCuenta("123",800000)
+        tarjeta = TarjetaCuenta(TarjetaCredito("123",800000))
 
         resultado_retiro = control_banco.realizar_retiro(tarjeta, 600000)
         self.assertTrue(resultado_retiro)
     
     def test_retirar_tarjeta_negativo(self):
         control_banco = OperacionBancaria()
-        tarjeta = TarjetaCuenta("456", 300000)
+        tarjeta = TarjetaCuenta(TarjetaCredito("456", 300000))
 
         resultado_retiro = control_banco.realizar_retiro(tarjeta, -400000)
         self.assertFalse(resultado_retiro)
     
     def test_retirar_tarjeta_mas_del_saldo(self):
         control_banco = OperacionBancaria()
-        tarjeta = TarjetaCuenta("789", 500000)
+        tarjeta = TarjetaCuenta(TarjetaCredito("789", 500000))
 
         resultado_retiro = control_banco.realizar_retiro(tarjeta, 700000)
         self.assertFalse(resultado_retiro)

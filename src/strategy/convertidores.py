@@ -1,4 +1,5 @@
 import json
+import os
 from abc import ABC, abstractmethod
 from strategy.entidades import Carro
 
@@ -45,6 +46,31 @@ class ConvertidorJson(ConvertidorFormato):
     def crear_carro(self, datos):
         placa = datos["placa"]
         modelo = datos["modelo"]
+        carro = Carro(placa, modelo)
+        return carro
+
+class ConvertidorCsv(ConvertidorFormato):
+    """ 
+    Permite convertir datos de carros que están en formato CSV
+    a sus correspondientes objetos "Carro" en Java.
+    Corresponde al rol CONCRETE STRATEGY.
+    """ 
+
+    def crear_lista_carros(self, texto):
+        carros = []
+        try:
+            datos_carros = texto.split('\n')
+            for datos_carro in datos_carros:
+                carro = self.crear_carro(datos_carro)
+                carros.append(carro)
+        except IndexError:
+            pass  # si el formato es incorrecto, no se crean carros.
+        return carros
+
+    def crear_carro(self, datos):
+        datos_carro = datos.split(',')
+        placa = datos_carro[0]
+        modelo = datos_carro[1]
         carro = Carro(placa, modelo)
         return carro
 

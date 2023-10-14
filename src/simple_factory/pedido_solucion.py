@@ -1,34 +1,50 @@
-from simple_factory.entidades import Peluche
+from simple_factory.entidades import Muneco
 from simple_factory.entidades import Balon
+from simple_factory.entidades import Tren
 
 class FabricaJuguetes:
     """
     CORRESPONDE AL ROL "FACTORY" del Simple Factory.
     """
     @staticmethod
-    def crear_juguete(precio_base, volumen, tipo):
-        if tipo == 'p':
-            return Peluche(precio_base,volumen)
+    def crear_juguete(nombre, precio_base, volumen, tipo):
+        if tipo == 'm':
+            return Muneco(nombre, precio_base, volumen)
         elif tipo == 'b':
-            return Balon(precio_base,volumen)
+            return Balon(nombre, precio_base, volumen)
+        elif tipo == 't':
+            return Tren(nombre, precio_base, volumen)
         else:
-            raise ValueError("Invalid animal type")
+            raise ValueError("Tipo de juguete no soportado")
 
 
 class Pedido:
     """ 
-    Permite obtener los datos de un pedido de un juguete, especialmente el precio.
- 
-    ESTA CLASE USA UNA FÁBRICA, ASÍ NO TIENE QUE CONOCER LAS HIJAS DE JUGUETE,
-    CUMPLIENDO CON "DEPENDENCY INVERSION".
-    """
+    Guarda los datos de un pedido de juguetes,
+    especialmente el precio, necesario para el área de Mercadeo.
 
-    def adicionar_juguete(self, precio_base, volumen, tipo):
-        self.juguete = FabricaJuguetes.crear_juguete(precio_base, volumen, tipo)
+    ESTA CLASE NO TIENE QUE CONOCER LAS CLASES HIJAS DE JUGUETE,
+    CUMPLIENDO ASÍ CON VARIOS PRINCIPIOS DE DISEÑO.
+    """
+    
+    def __init__(self):
+        self.juguetes = []
+
+    def adicionar_juguete(self, nombre, precio_base, volumen, tipo):
+        for juguete in self.juguetes:
+            if juguete.nombre == nombre:
+               raise ValueError("Juguete con nombre repetido") 
+
+        juguete = FabricaJuguetes.crear_juguete(nombre, precio_base, volumen, tipo)
+        self.juguetes.append(juguete)
     
     def calcular_precio(self):
         """ 
-        Calcula el precio del pedido, sumando el precio del juguete y los gastos administrativos
+        Calcula el precio del pedido, sumando el precio de los juguetes
+        y unos gastos administrativos
         """
         GASTOS_ADMINISTRATIVOS = 2000
-        return self.juguete.get_precio_total() + GASTOS_ADMINISTRATIVOS
+        precio_juguetes = 0
+        for juguete in self.juguetes:
+            precio_juguetes += juguete.get_precio_total()
+        return precio_juguetes + GASTOS_ADMINISTRATIVOS
